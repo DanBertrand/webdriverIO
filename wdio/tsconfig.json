@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    // "baseUrl": ".",
+    // "outDir": ".",
+    "moduleResolution": "node",
+    "target": "es6",
+    "types": [
+      "node",
+      "webdriverio/async",
+      "@wdio/mocha-framework",
+      "expect-webdriverio",
+      "@wdio/cli",
+      "@wdio/types",
+      "webdriverio"
+    ]
+  }
+}
