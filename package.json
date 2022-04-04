@@ -22,9 +22,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "e2e": "wdio run wdio/wdio.conf.ts && marge ./Results/wdio-ma-merged.json",
+    "e2e": "rm -rf allure-report allure-results Results mochawesome-report && wdio run wdio/wdio.conf.ts",
     "report:allure": "allure open",
-    "report:mocha": "firefox ./mochawesome-report/wdio-ma-merged.html"
+    "report:mocha": "marge ./Results/wdio-ma-merged.json && firefox ./mochawesome-report/wdio-ma-merged.html"
   },
   "eslintConfig": {
     "extends": [

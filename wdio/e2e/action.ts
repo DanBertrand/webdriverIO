@@ -2,7 +2,6 @@ import {
   SEARCH_TERM_WITH_MULTIPLE_RESULT,
   SEARCH_TERM_WITH_SINGLE_RESULT,
 } from "../variables";
-import { delay } from "../utils";
 import LaunchesPage from "../pages/LaunchesPage";
 import HomePage from "../pages/HomePage";
 import allureReporter from "@wdio/allure-reporter";
@@ -17,7 +16,6 @@ describe("Action", () => {
     describe("HighChart", () => {
       beforeEach(async () => {
         await HomePage.open();
-        await delay(2000);
       });
       it("contains the right amount of points / dots", async () => {
         allureReporter.addSeverity("High");
@@ -30,7 +28,6 @@ describe("Action", () => {
     before(async () => {
       await HomePage.open();
       await HomePage.goPastLaunchesPage;
-      await delay(1000);
     });
 
     // Focus on the toggle button / sorting the cards
@@ -40,7 +37,6 @@ describe("Action", () => {
         expect(paragraph).toHaveTextContaining("Oldest to Newest");
         const toggleButton = await LaunchesPage.toggleButton;
         await toggleButton.click();
-        await delay(10000);
         expect(paragraph).toHaveTextContaining("Newest to Oldest");
       });
       it("sort the cards correctly", async () => {
@@ -49,9 +45,6 @@ describe("Action", () => {
         await toggleButton.click();
         const newFirstCard = await LaunchesPage.firstCard;
         await expect(firstCard.isEqual(newFirstCard)).not.toBe(true);
-        // expect(await firstLastCard.isEqual(newFirstCard)).toBe(true);
-
-        // expect(firstCard.elementId === newFirstCard.elementId).toBe(true);
       });
     });
 

@@ -6,7 +6,6 @@ import {
 } from "../variables";
 import LaunchesPage from "../pages/LaunchesPage";
 import HomePage from "../pages/HomePage";
-import { delay } from "../utils";
 import HighChart from "../components/HighChart";
 import allureReporter from "@wdio/allure-reporter";
 
@@ -14,7 +13,6 @@ describe("UI", () => {
   describe("Home Page", () => {
     beforeEach(async () => {
       await HomePage.open();
-      await delay(2000);
     });
     it("contain h1 with the text “SpaceX Launches”", async () => {
       allureReporter.addDescription(
@@ -61,6 +59,11 @@ describe("UI", () => {
         expect(await LaunchesPage.firstFlightDate).toBeDisplayed();
       });
       it(`has grey border color`, async () => {
+        await $(await LaunchesPage.firstCard).waitForDisplayed({
+          timeout: 3000,
+          timeoutMsg: "Not displayed after 3s",
+        });
+        browser.takeElementScreenshot(await LaunchesPage.firstCard.elementId);
         expect(BORDER_COLOR_BASE).toContain(
           (await LaunchesPage.firstCard.getCSSProperty("border-color")).parsed
             .rgb

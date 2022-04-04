@@ -1,6 +1,5 @@
 import LaunchesPage from "../pages/LaunchesPage";
 import HomePage from "../pages/HomePage";
-import { delay } from "../utils";
 import { BASE_URL } from "../variables";
 const allureReporter = require("@wdio/allure-reporter").default;
 describe("Navigation", () => {
@@ -12,7 +11,6 @@ describe("Navigation", () => {
   describe("Hompage", () => {
     beforeEach(async () => {
       await HomePage.open();
-      await delay(2000);
     });
     it(`Clicking on “see all past launches” link redirect to “${BASE_URL}/past-launches”`, async () => {
       allureReporter.addLabel("Link");
